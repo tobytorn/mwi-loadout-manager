@@ -644,9 +644,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mwi-homemade-loadout@workspace:.":
+"mwi-loadout-manager@workspace:.":
   version: 0.0.0-use.local
-  resolution: "mwi-homemade-loadout@workspace:."
+  resolution: "mwi-loadout-manager@workspace:."
   dependencies:
     eslint: ^8.46.0
     prettier: ^3.0.0
