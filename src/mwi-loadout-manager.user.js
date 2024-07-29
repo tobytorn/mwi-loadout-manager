@@ -5,13 +5,15 @@
 // @author      tobytorn
 // @match       https://www.milkywayidle.com/*
 // @match       https://test.milkywayidle.com/*
-// @version     1.0.0-beta.1
+// @version     1.0.0
 // @grant       GM_addStyle
 // @grant       GM_getValue
 // @grant       GM_setValue
 // @supportURL  https://github.com/tobytorn/mwi-loadout-manager
 // @license     MIT
 // @require     https://unpkg.com/jquery@3.7.0/dist/jquery.min.js
+// @downloadURL https://update.greasyfork.org/scripts/502083/MWI%20Loadout%20Manager.user.js
+// @updateURL   https://update.greasyfork.org/scripts/502083/MWI%20Loadout%20Manager.meta.js
 // ==/UserScript==
 
 (function () {
