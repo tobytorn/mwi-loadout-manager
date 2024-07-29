@@ -1,6 +1,6 @@
 # MWI Loadout Manager
 
-This userscript lets you import loadouts from the Combat Simulator export files and highlights equipments, abilities and consumables that are different from your selected loadout.
+This userscript allows you to import loadouts from Combat Simulator export files. It highlights any differences in equipment, abilities, and consumables compared to your selected loadout.
 
 ## Screenshots
 
