@@ -19,6 +19,10 @@
 (function () {
   'use strict';
 
+  const MISC_SVG = '/static/media/misc_sprite.2864433e.svg';
+  const ITEMS_SVG = '/static/media/items_sprite.8134f2ed.svg';
+  const ABILITIES_SVG = '/static/media/abilities_sprite.7b4605a0.svg';
+
   const CSS = `
     .lmInput {
       color: var(--color-text-dark-mode);
@@ -340,7 +344,7 @@
         <div class="lmLoadoutName"></div>
         <div class="lmLoadoutStar">
           <svg width="100%" height="100%">
-            <use href="/static/media/misc_sprite.2864433e.svg#elite_2_star"></use>
+            <use href="${MISC_SVG}#elite_2_star"></use>
           </svg>
         </div>
       </div>
@@ -362,7 +366,7 @@
       <div class="lmEnhancementLevel"></div>
       <div class="lmTriggerIcon">
         <div><!-- a small dot to make the center of this icon opaque --></div>
-        <svg width="100%" height="100%"><use href="/static/media/misc_sprite.2864433e.svg#settings"></use></svg>
+        <svg width="100%" height="100%"><use href="${MISC_SVG}#settings"></use></svg>
       </div>
     </div>
   `;
@@ -399,7 +403,7 @@
         </div>
         <div class="Modal_closeButton__3eTF7">
           <div role="img" alt="Close" class="Icon_icon__2LtL_">
-            <svg width="100%" height="100%"><use href="/static/media/misc_sprite.2864433e.svg#close_menu"></use></svg>
+            <svg width="100%" height="100%"><use href="${MISC_SVG}#close_menu"></use></svg>
           </div>
         </div>
       </div>
@@ -409,8 +413,8 @@
   const ITEM_HRID_PREFIX = '/items/';
   const ABILITY_HRID_PREFIX = '/abilities/';
   const LOCATION_HRID_PREFIX = '/item_locations/';
-  const ITEM_HREF_PREFIX = '/static/media/items_sprite.ea892705.svg#';
-  const ABILITY_HREF_PREFIX = '/static/media/abilities_sprite.7b4605a0.svg#';
+  const ITEM_HREF_PREFIX = `${ITEMS_SVG}#`;
+  const ABILITY_HREF_PREFIX = `${ABILITIES_SVG}#`;
   const TRIGGER_COMPARATOR_PREFIX = '/combat_trigger_comparators/';
   const TRIGGER_CONDITION_PREFIX = '/combat_trigger_conditions/';
   const TRIGGER_DEPENDENCY_PREFIX = '/combat_trigger_dependencies/';
@@ -1215,8 +1219,8 @@
       $tooltip.find('.ItemSelector_removeButton__3i8Lj').addClass('lmPick');
       return;
     }
-    const href = `${ITEM_HREF_PREFIX}${item.itemHrid.slice(ITEM_HRID_PREFIX.length)}`;
-    const $items = $tooltip.find(`use[href="${href}"]`).closest('.ItemSelector_itemContainer__3olqe');
+    const itemName = item.itemHrid.slice(ITEM_HRID_PREFIX.length);
+    const $items = $tooltip.find(`use[href$="#${itemName}"]`).closest('.ItemSelector_itemContainer__3olqe');
     let isMatched;
     if ('enhancementLevel' in item) {
       let $matched = null;
@@ -1255,8 +1259,8 @@
       $tooltip.find('.AbilitySlot_removeButton__1GpmP').addClass('lmPick');
       return;
     }
-    const href = `${ABILITY_HREF_PREFIX}${ability.abilityHrid.slice(ABILITY_HRID_PREFIX.length)}`;
-    const $svgUse = $tooltip.find(`use[href="${href}"]`);
+    const abilityName = ability.abilityHrid.slice(ABILITY_HRID_PREFIX.length);
+    const $svgUse = $tooltip.find(`use[href$="${abilityName}"]`);
     if ($svgUse.length > 0) {
       const $grid = $tooltip.find('.AbilitySlot_availableAbilities__s-5qp');
       $grid.children().addClass('lmTemp');
