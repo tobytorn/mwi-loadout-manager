@@ -5,7 +5,7 @@
 // @author      tobytorn
 // @match       https://www.milkywayidle.com/*
 // @match       https://test.milkywayidle.com/*
-// @version     1.0.0
+// @version     1.0.1
 // @grant       GM_addStyle
 // @grant       GM_getValue
 // @grant       GM_setValue
