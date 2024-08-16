@@ -425,6 +425,7 @@
     feet: [4, 2],
     hands: [3, 1],
     main_hand: [2, 1],
+    two_hand: [2, 1],
     off_hand: [2, 3],
     pouch: [3, 3],
     back: [1, 1],
@@ -914,6 +915,7 @@
     const $details = $row.find('.lmLoadoutDetails');
     for (const [location, [r, c]] of Object.entries(EQUIPMENT_GRID_POSITION)) {
       const $item = $(LOADOUT_ITEM_HTML);
+      $item.attr('data-lm-location', location);
       const item = loadout.data.equipment.find((x) => x.itemLocationHrid === `${LOCATION_HRID_PREFIX}${location}`);
       if (item) {
         $item.find('.lmItemIcon use').attr('href', ITEM_HREF_PREFIX + item.itemHrid.slice(ITEM_HRID_PREFIX.length));
@@ -927,6 +929,13 @@
       }
       $item.css('grid-row', r);
       $item.css('grid-column', c);
+      if (location === 'two_hand') {
+        if (item) {
+          $details.find('[data-lm-location=main_hand]').remove();
+        } else {
+          continue;
+        }
+      }
       $details.eq(0).append($item);
     }
     for (const [type, slotInfo] of Object.entries(SLOT_WITH_TRIGGERS)) {
@@ -1150,13 +1159,17 @@
       const $equipment = $(this);
       const r = Number($equipment.css('grid-row-start'));
       const c = Number($equipment.css('grid-column-start'));
-      const location = Object.entries(EQUIPMENT_GRID_POSITION).find(([, pos]) => r === pos[0] && c === pos[1])?.[0];
-      if (!location) {
-        return;
+      const locations = Object.entries(EQUIPMENT_GRID_POSITION)
+        .filter(([, pos]) => r === pos[0] && c === pos[1])
+        .map(([location]) => location);
+      for (const location of locations) {
+        const item = manager.compareEquipment(location);
+        $equipment.toggleClass('lmHighlight', item !== null);
+        $equipment.data('lmItem', item);
+        if (item !== null) {
+          break;
+        }
       }
-      const item = manager.compareEquipment(location);
-      $equipment.toggleClass('lmHighlight', item !== null);
-      $equipment.data('lmItem', item);
     });
   }
 
