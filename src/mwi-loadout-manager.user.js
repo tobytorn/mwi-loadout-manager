@@ -593,7 +593,9 @@
         return;
       }
       this.loadouts.splice(index, 1);
-      this.selected = null;
+      if (this.selected?.name === name) {
+        this.selected = null;
+      }
       this.save();
     }
 
